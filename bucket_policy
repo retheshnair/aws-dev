@@ -1,0 +1,13 @@
+{
+  "Version":"2012-10-17",
+  "Id": "mypolicy1",
+  "Statement":[
+    {
+      "Sid":"Smt",
+      "Action":["s3:ListBucket"],
+      "Effect": :Deny",
+      "Resource":["arn:aws:s3:::bucketname"],
+      "Principal": {"AWS": [arn:aws:iam:XXXXXXXX:username]}
+    }
+  ]
+}
