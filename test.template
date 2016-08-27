@@ -1,0 +1,30 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "website configuration on s3",
+
+"Resources" : {
+  "S3Bucket" : {
+   "Type" : "AWS::S3::Bucket",
+   "Properties" : {
+    "AccessControl" : "PublicRead",
+    "BucketName" : "retheshnair-test1",
+    "WebsiteConfiguration" : {
+         "ErrorDocument" : "error.html",
+         "IndexDocument" : "index.html"
+    }
+  },
+  "DeletionPolicy" : "Retain"
+  }
+},
+
+"Outputs" : {
+     "websiteURL" : {
+        "Value" : { "Fn::GetAtt" : [ "S3Bucket", "websiteURL" ] },
+        "Description" : "URL for website hosted on s3"
+      },
+      "S3BucketSecureURL" : {
+         "Value" : { "Fn::Join" : [ "", [ "https://", { "Fn::GetAtt" : [ "S3Bucket", "DomainName" ] } ] ] },
+         "Description" : "Name of S3 bucket to hold website content"
+       }
+}
+}
